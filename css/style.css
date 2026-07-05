@@ -114,9 +114,15 @@ h3 { font-size: 1.2rem; }
     transition: color 0.25s ease, border-color 0.25s ease;
 }
 
-.nav-links a:hover,
+.nav-links a:hover {
+    color: var(--color-text);
+    border-color: var(--color-text);
+}
+
 .nav-links a.active {
     color: var(--color-text);
+    font-weight: 700;
+    border-bottom-width: 2px;
     border-color: var(--color-text);
 }
 
@@ -203,7 +209,7 @@ h3 { font-size: 1.2rem; }
 
 /* Page banner (non-home pages) */
 .page-banner {
-    padding: 210px 0 60px;
+    padding: 90px 0 60px;
     border-bottom: 1px solid var(--color-line);
 }
 
@@ -427,6 +433,6 @@ form { display: flex; flex-direction: column; gap: 24px; }
     .steps { grid-template-columns: 1fr 1fr; }
     .footer-top { grid-template-columns: 1fr; }
     section { padding: 70px 0; }
-    .page-banner { padding: 160px 0 40px; }
+    .page-banner { padding: 70px 0 40px; }
     .container { padding: 0 24px; }
 }
