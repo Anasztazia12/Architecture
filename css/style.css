@@ -230,6 +230,7 @@ section.tight { padding: 80px 0; }
 
 .split .img-placeholder { aspect-ratio: 4/5; }
 .split.reverse .img-placeholder { order: 2; }
+.split .img-placeholder.story-photo { aspect-ratio: 3/2; }
 
 .team-row + .team-row { margin-top: 90px; }
 .team-role { margin: 10px 0 20px; }
