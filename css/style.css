@@ -199,7 +199,7 @@ h3 { font-size: 1.2rem; }
 
 /* Hero */
 .hero {
-    height: 88vh;
+    height: 72vh;
     min-height: 560px;
     position: relative;
     background-size: cover;
