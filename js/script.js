@@ -90,32 +90,41 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         chatClose.addEventListener('click', () => chatPanel.classList.remove('is-open'));
 
-        const replies = [
-            "Thanks for your message — one of our team will get back to you shortly. You can also reach us directly at hello@architecture.com.",
-            "Good question. For pricing and timelines it's best to book a short call — leave your email and we'll follow up personally.",
-            "We'd love to hear more about your project. Share the location and rough scope and we'll come back with next steps."
-        ];
-        let replyIndex = 0;
+        const lead = { name: '', email: '', message: '' };
+        let chatStep = 0;
+
+        const addMsg = (text, from) => {
+            const msg = document.createElement('div');
+            msg.className = `chat-msg ${from}`;
+            msg.textContent = text;
+            chatBody.appendChild(msg);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        };
 
         chatForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const text = chatInput.value.trim();
             if (!text) return;
 
-            const userMsg = document.createElement('div');
-            userMsg.className = 'chat-msg user';
-            userMsg.textContent = text;
-            chatBody.appendChild(userMsg);
+            addMsg(text, 'user');
             chatInput.value = '';
-            chatBody.scrollTop = chatBody.scrollHeight;
 
             setTimeout(() => {
-                const aiMsg = document.createElement('div');
-                aiMsg.className = 'chat-msg ai';
-                aiMsg.textContent = replies[replyIndex % replies.length];
-                replyIndex++;
-                chatBody.appendChild(aiMsg);
-                chatBody.scrollTop = chatBody.scrollHeight;
+                if (chatStep === 0) {
+                    lead.name = text;
+                    addMsg(`Thanks, ${lead.name}! What's the best email to reach you on?`, 'ai');
+                    chatStep = 1;
+                } else if (chatStep === 1) {
+                    lead.email = text;
+                    addMsg("Great — and what can we help you with?", 'ai');
+                    chatStep = 2;
+                } else if (chatStep === 2) {
+                    lead.message = text;
+                    addMsg(`Thanks, ${lead.name}! One of our colleagues will get back to you at ${lead.email} shortly.`, 'ai');
+                    chatStep = 3;
+                } else {
+                    addMsg("Noted — we've added that to your enquiry. We'll be in touch soon.", 'ai');
+                }
             }, 700);
         });
     }
