@@ -164,6 +164,27 @@
         </div>
     </footer>
 
+    <button class="chat-toggle" id="chatToggle" aria-label="Open chat assistant">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    </button>
+
+    <div class="chat-panel" id="chatPanel">
+        <div class="chat-header">
+            <span class="chat-dot red"></span>
+            <span class="chat-dot yellow"></span>
+            <span class="chat-dot green"></span>
+            <span class="chat-title">Chat with us</span>
+            <button class="chat-close" id="chatClose" aria-label="Close chat">&times;</button>
+        </div>
+        <div class="chat-body" id="chatBody">
+            <div class="chat-msg ai">Hi! I'm here to help. Ask about a project, or leave your details and we'll get back to you.</div>
+        </div>
+        <form class="chat-form" id="chatForm">
+            <input type="text" id="chatInput" placeholder="Type your message&hellip;" autocomplete="off" required>
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
     <script src="js/script.js"></script>
 </body>
 </html>

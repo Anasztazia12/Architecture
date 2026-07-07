@@ -75,4 +75,48 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { threshold: 0.4 });
         statEls.forEach(el => statObserver.observe(el));
     }
+
+    const chatToggle = document.getElementById('chatToggle');
+    const chatPanel = document.getElementById('chatPanel');
+    const chatClose = document.getElementById('chatClose');
+    const chatForm = document.getElementById('chatForm');
+    const chatInput = document.getElementById('chatInput');
+    const chatBody = document.getElementById('chatBody');
+
+    if (chatToggle && chatPanel) {
+        chatToggle.addEventListener('click', () => {
+            chatPanel.classList.toggle('is-open');
+            if (chatPanel.classList.contains('is-open')) chatInput.focus();
+        });
+        chatClose.addEventListener('click', () => chatPanel.classList.remove('is-open'));
+
+        const replies = [
+            "Thanks for your message — one of our team will get back to you shortly. You can also reach us directly at hello@architecture.com.",
+            "Good question. For pricing and timelines it's best to book a short call — leave your email and we'll follow up personally.",
+            "We'd love to hear more about your project. Share the location and rough scope and we'll come back with next steps."
+        ];
+        let replyIndex = 0;
+
+        chatForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const text = chatInput.value.trim();
+            if (!text) return;
+
+            const userMsg = document.createElement('div');
+            userMsg.className = 'chat-msg user';
+            userMsg.textContent = text;
+            chatBody.appendChild(userMsg);
+            chatInput.value = '';
+            chatBody.scrollTop = chatBody.scrollHeight;
+
+            setTimeout(() => {
+                const aiMsg = document.createElement('div');
+                aiMsg.className = 'chat-msg ai';
+                aiMsg.textContent = replies[replyIndex % replies.length];
+                replyIndex++;
+                chatBody.appendChild(aiMsg);
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }, 700);
+        });
+    }
 });
