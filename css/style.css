@@ -344,15 +344,31 @@ h1 .accent, h2 .accent {
 .banner-motif {
     position: absolute;
     top: 50%;
-    right: -60px;
+    right: -20px;
     transform: translateY(-50%);
-    width: 460px;
+    width: 620px;
     height: auto;
-    max-width: 45vw;
+    max-width: 55vw;
     fill: none;
     stroke: var(--color-text);
-    stroke-width: 1.2;
-    opacity: 0.07;
+    stroke-width: 1.6;
+    opacity: 0.28;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.banner-motif-img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 52%;
+    height: 100%;
+    background-image: url('../images/dizajn.webp');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.22;
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 30%);
+    mask-image: linear-gradient(to right, transparent, #000 30%);
     pointer-events: none;
     z-index: 0;
 }
