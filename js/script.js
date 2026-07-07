@@ -38,8 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const staggerObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
+                    const step = parseInt(entry.target.dataset.stagger, 10) || 70;
                     Array.from(entry.target.children).forEach((child, i) => {
-                        child.style.transitionDelay = `${i * 70}ms`;
+                        child.style.transitionDelay = `${i * step}ms`;
                     });
                     entry.target.classList.add('is-visible');
                     staggerObserver.unobserve(entry.target);
